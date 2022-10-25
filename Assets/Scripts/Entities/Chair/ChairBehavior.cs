@@ -8,9 +8,10 @@ public class ChairBehavior : MonoBehaviour
 {
     [SerializeField]
     private GameObject dirtyPlate;
-    private GameObject currentDirtyPlate;
+    private GameObject currentPlate;
+
     private bool occupied;
-    private bool clean;
+    public bool clean;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,28 +21,38 @@ public class ChairBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (currentPlate == null && occupied==false)
+        {
+            clean = true;
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Customer")
+        if(collision.gameObject.CompareTag("Customer"))
         {
             onCustomerEnter();
-            occupied = true;
+            
             
         }
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.CompareTag("Player"))
         {
             if (occupied == false)
             {
-
+                if (currentPlate=dirtyPlate)
+                {
+                    //current plate is selectable only if dirty, food plates should not be picked up if being used by customer thats rude. 
+                }
+            }
+            else
+            {
+               // if plate the player tries to give matches the customer order that plate becomes the current plate until the customer leaves.
             }
         }
 
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Customer")
+        if (collision.gameObject.CompareTag("Customer"))
         {
             onCustomerExit();
             
@@ -54,11 +65,13 @@ public class ChairBehavior : MonoBehaviour
     private void onCustomerExit()
     {
         clean = false;
-        currentDirtyPlate = Instantiate(dirtyPlate, new Vector2(transform.position.x, transform.position.y), Quaternion.identity, transform);
+        currentPlate = Instantiate(dirtyPlate, new Vector2(transform.position.x, transform.position.y), Quaternion.identity, transform);
     }
 
     private void onCustomerEnter()
     {
-        throw new NotImplementedException();
+        occupied = true;
+
+
     }
 }
