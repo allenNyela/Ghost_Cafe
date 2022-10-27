@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-
+   
     /* Other Scripts */
     private PlayerMovement playerMovement;
     private PlayerAnimator playerAnimator;
+    private PlayerHands playerHands;
 
     void Start()
     {
         playerMovement = GetComponent<PlayerMovement>();
         playerAnimator = GetComponent<PlayerAnimator>();
+        playerHands = GetComponent<PlayerHands>();
     }
 
     // Update is called once per frame
@@ -39,6 +41,17 @@ public class PlayerController : MonoBehaviour
         else
         {
             playerAnimator.WalkAnimation();
+        }
+
+        /* Grab with left hand */
+        if (Input.GetMouseButtonDown(0))
+        {
+            playerHands.LeftHand();
+        }
+        /* Grab with right hand */
+        if (Input.GetMouseButtonDown(1))
+        {
+            playerHands.RightHand();
         }
     }
 }
