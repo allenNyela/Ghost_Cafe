@@ -5,34 +5,64 @@ using UnityEngine;
 public class CustomerFood : MonoBehaviour
 {
 
-    enum food
-    {
-        Pie=18,
-        Coffee=10,
-        Turkey=23
-    }
-
-    food customerFoodRequest = null;
+    String food[3] = {"Pie", "Coffee", "Turkey"};
+    String customerFoodRequest = "";
     boolean isDone = false; //lets chair and game manager know customer is done and can leave the restaurant
-    boolean waiting = false; // if waiting for a certain amount of time, score is decremented
+    boolean isWaiting = false; // if waiting for a certain amount of time, score is decremented
     float customerScore = 0; // change depending on the food item it requests
+    private float timer = 0.0;
+    float foodDeduct = 0;
+    private float waitTime = 5.0;
+    private float eatingTimer = 0;
+    boolean hasFood = false;
+    boolean foundChair = false;
 
-    [SerializedField] State;
-    private GameObject table;
+    [SerializeField]
+    private GameObject chair = null;
+    [SerializeField]
+    public int customerType = 0;
 
     // Update is called once per frame
     void Update()
     {
-        
+
+        if (chair != null && !foundChair) {
+            findTable();
+        }
+
+        if (customerType == 0) {
+            if (customerType == 1) {
+                foodDeduct = 1.5;
+            } else if (customerType == 2) {
+                foodDeduct = 1;
+            } else {
+                foodDeduct = .5;
+            }
+        }
+
+        if (isWaiting) {
+
+            timer += Time.deltaTime;
+
+            if (timer % waitTime == 0) {
+                decrementScore(foodDeduct);
+            }
+
+        }
+
+        if (hasFood) {
+            eatFood();
+        }
     }
 
     void eatFood() 
     {
-
+        isWaiting = false;
         //wait 10 seconds for customer to eat
         System.Threading.Thread.Sleep(10000);
-        //switch isDone to true
         isDone = true;
+        hasFood = false;
+        leaveRestaurant();
 
     }
 
@@ -40,23 +70,30 @@ public class CustomerFood : MonoBehaviour
     {
         //generate random food enum
         Random r = new Random();
-        food[] fA = Enum.GetValues(typeof (food));
-        customerFoodRequest = fA.GetValue(r.Next(fA.length));
+        String[] fA = food;
+        customerFoodRequest = fA[(r.Next(fA.length))];
 
-        waiting = true;
-        customerScore = (float)customerFoodRequest;
+        if (customerFoodRequest == "Pie") {
+            customerScore = 18;
+        } else if (customerFoodRequest == "Coffee") {
+            customerScore = 10;
+        } else {
+            customerScore = 23;
+        }
+
+        isWaiting = true;
     }
 
     void leaveRestaurant() 
     {
-        //calls movement script
+        GameObject.GetComponent<CustomerMovement>().WalkOut();
 
     }
 
     void findTable()
     {
-        getComponent(/**get game object **/);
-        //calls movement script
+        GameObject.GetComponent<CustomerMovement>().WalkIn(chair);
+        foundChair == true;
     }
 
     //decrements the local customer score
@@ -65,16 +102,26 @@ public class CustomerFood : MonoBehaviour
         this.customerScore -= deduct;
     }
 
-    boolean getCustomerEatingStatus()
+    public boolean getCustomerEatingStatus()
     {
         return isDone;
     }
 
-    food getFood()
+    public String getFood()
     {
         return customerFoodRequest;
     }
 
-//Time.time + Time.deltaTIme;
+    public float getCustomerScore() 
+    {
+        return customerScore;
+    }
 
+    public void setGotFood(Boolean hasFood) {
+        this.hasFood = hasFood;
+    }
+
+    public void setChairObject(GameObject chair) {
+        this.chair = chair;
+    }
 }
