@@ -17,13 +17,8 @@ public class CustomerFood : MonoBehaviour
     boolean waiting = false; // if waiting for a certain amount of time, score is decremented
     float customerScore = 0; // change depending on the food item it requests
 
-    [SerializedField]
+    [SerializedField] State;
     private GameObject table;
-        // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -54,12 +49,14 @@ public class CustomerFood : MonoBehaviour
 
     void leaveRestaurant() 
     {
+        //calls movement script
 
     }
 
     void findTable()
     {
-
+        getComponent(/**get game object **/);
+        //calls movement script
     }
 
     //decrements the local customer score
@@ -78,6 +75,6 @@ public class CustomerFood : MonoBehaviour
         return customerFoodRequest;
     }
 
-Time.time + Time.deltaTIme;
+//Time.time + Time.deltaTIme;
 
 }
