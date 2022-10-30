@@ -86,4 +86,15 @@ public class CustomerMovement : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+
+    public void WalkIn(GameObject chair)
+    {
+        isWalkingIn = true;
+        this.chair = chair;
+    }
+
+    public void WalkOut()
+    {
+        isWalkingOut = true;
+    }
 }
