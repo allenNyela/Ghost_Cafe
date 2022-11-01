@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 8b0417c47addb224b8aa5679435c2faa
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - dirtyPlate: {fileID: 5320420665021042859, guid: 99ce31f84c2e0394ebbd8111f257fb91, type: 3}
+  - turkey: {fileID: 8518760986890808890, guid: d403d6bbd3d948b4db37c81ef7bc393d, type: 3}
+  - pie: {fileID: 7973290687511907591, guid: a451d78a6bb2bf049a498f68646e3f77, type: 3}
+  - coffee: {fileID: 7428977994008917138, guid: db55faa9d30bc7a4d8d65f7a92bc3d7a, type: 3}
+  - tablePlaceholder: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
