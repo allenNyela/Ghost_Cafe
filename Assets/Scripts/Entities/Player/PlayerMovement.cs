@@ -11,6 +11,11 @@ public class PlayerMovement : MonoBehaviour
     /* Unity Varialbes */
     private Rigidbody2D body;
 
+    [SerializeField]
+    private Sprite left;
+    [SerializeField]
+    private Sprite right;
+
     private void Start()
     {
         body = GetComponent<Rigidbody2D>();
@@ -20,5 +25,18 @@ public class PlayerMovement : MonoBehaviour
     public void Walk(Vector2 direction)
     {
         body.velocity = new Vector2(direction.x * walkSpeed, direction.y * walkSpeed);
+    }
+
+    private void FixedUpdate()
+    {
+        if (body.velocity.x > 0)
+        {
+            gameObject.GetComponent<SpriteRenderer>().sprite = right;
+        }
+
+        if (body.velocity.x < 0)
+        {
+            gameObject.GetComponent<SpriteRenderer>().sprite = left;
+        }
     }
 }

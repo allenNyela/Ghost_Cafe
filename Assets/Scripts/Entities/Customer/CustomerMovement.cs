@@ -17,7 +17,7 @@ public class CustomerMovement : MonoBehaviour
     [SerializeField]
     private float speed;
 
-    private bool isWalkingIn = true;
+    private bool isWalkingIn = false;
     private bool isWalkingOut = false;
 
     private Rigidbody2D body;
@@ -26,6 +26,11 @@ public class CustomerMovement : MonoBehaviour
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
+    }
+
+    public void setExit(GameObject exit)
+    {
+        this.exit = exit;
     }
 
     // Update is called once per frame

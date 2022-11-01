@@ -26,6 +26,8 @@ public class PlayerHands : MonoBehaviour
     private Transform pieCheck;
     [SerializeField]
     private LayerMask whatIsPlayer;
+    private bool inRangeOfCustomer;
+    private GameObject currentCustomer;
 
     // Objects to hold
     [SerializeField]
@@ -41,6 +43,10 @@ public class PlayerHands : MonoBehaviour
     // Variables for picking up dirty plates
     private bool inRangeOfPlate;
     private GameObject currentPlate;
+
+    // Information for other scripts
+    private string currentlyHolding;
+    private string currentlyHoldingInRight;
 
     void Start()
     {
@@ -80,18 +86,21 @@ public class PlayerHands : MonoBehaviour
         {
             Debug.Log("pick up turkey");
             inLeftHand = Instantiate(turkey, leftHand.transform.position, Quaternion.identity, leftHand.transform);
+            currentlyHolding = "Turkey";
         }
 
         else if (Physics2D.OverlapCircle(coffeeCheck.position, checkRadius, whatIsPlayer))
         {
             Debug.Log("pick up coffee");
             inLeftHand = Instantiate(coffee, leftHand.transform.position, Quaternion.identity, leftHand.transform);
+            currentlyHolding = "Coffee";
         }
 
         else if (Physics2D.OverlapCircle(pieCheck.position, checkRadius, whatIsPlayer))
         {
             Debug.Log("pick up pie");
             inLeftHand = Instantiate(pie, leftHand.transform.position, Quaternion.identity, leftHand.transform);
+            currentlyHolding = "Pie";
         }
 
         else if (inRangeOfPlate)
@@ -99,6 +108,7 @@ public class PlayerHands : MonoBehaviour
             Debug.Log("pick up trash");
             inLeftHand = Instantiate(dirtyPlate, leftHand.transform.position, Quaternion.identity, leftHand.transform);
             Destroy(currentPlate);
+            currentlyHolding = "Trash";
         }
     }
 
@@ -108,6 +118,19 @@ public class PlayerHands : MonoBehaviour
         {
             Debug.Log("drop left");
             Destroy(inLeftHand);
+            currentlyHolding = "Nothing";
+        }
+
+        if (inRangeOfCustomer == true)
+        {
+            if (currentCustomer.GetComponent<CustomerFood>().customerFoodRequest == currentlyHolding)
+            {
+                currentCustomer.GetComponent<CustomerFood>().setGotFood(true, currentlyHolding);
+                Debug.Log("drop left");
+                Destroy(inLeftHand);
+                currentlyHolding = "Nothing";
+            }
+            
         }
     }
 
@@ -119,18 +142,21 @@ public class PlayerHands : MonoBehaviour
         {
             Debug.Log("pick up turkey");
             inRightHand = Instantiate(turkey, rightHand.transform.position, Quaternion.identity, rightHand.transform);
+            currentlyHoldingInRight = "Turkey";
         }
 
         else if (Physics2D.OverlapCircle(coffeeCheck.position, checkRadius, whatIsPlayer))
         {
             Debug.Log("pick up coffee");
             inRightHand = Instantiate(coffee, rightHand.transform.position, Quaternion.identity, rightHand.transform);
+            currentlyHoldingInRight = "Coffee";
         }
 
         else if (Physics2D.OverlapCircle(pieCheck.position, checkRadius, whatIsPlayer))
         {
             Debug.Log("pick up pie");
             inRightHand = Instantiate(pie, rightHand.transform.position, Quaternion.identity, rightHand.transform);
+            currentlyHoldingInRight = "Pie";
         }
 
         else if (inRangeOfPlate)
@@ -138,6 +164,7 @@ public class PlayerHands : MonoBehaviour
             Debug.Log("pick up trash");
             inRightHand = Instantiate(dirtyPlate, rightHand.transform.position, Quaternion.identity, rightHand.transform);
             Destroy(currentPlate);
+            currentlyHoldingInRight = "Trash";
         }
     }
 
@@ -148,16 +175,36 @@ public class PlayerHands : MonoBehaviour
         {
             Debug.Log("drop right");
             Destroy(inRightHand);
+            currentlyHoldingInRight = "Nothing";
+        }
+
+        if (inRangeOfCustomer == true)
+        {
+            if (currentCustomer.GetComponent<CustomerFood>().customerFoodRequest == currentlyHoldingInRight &&
+                currentCustomer.GetComponent<CustomerFood>().hasFood == false)
+            {
+                currentCustomer.GetComponent<CustomerFood>().setGotFood(true, currentlyHoldingInRight);
+                Debug.Log("drop right");
+                Destroy(inRightHand);
+                currentlyHoldingInRight = "Nothing";
+            }
         }
     }
 
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "DirtyPlate")
         {
             inRangeOfPlate = true;
             currentPlate = collision.gameObject;
+        }
+
+        if (collision.gameObject.tag == "Customer")
+        {
+            Debug.Log("In range of customer");
+            inRangeOfCustomer = true;
+            currentCustomer = collision.gameObject;
         }
     }
 
@@ -166,6 +213,11 @@ public class PlayerHands : MonoBehaviour
         if (collision.gameObject.tag == "DirtyPlate")
         {
             inRangeOfPlate = false;
+        }
+
+        if (collision.gameObject.tag == "Customer")
+        {
+            inRangeOfCustomer = false;
         }
     }
 }
