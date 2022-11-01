@@ -296,5 +296,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Customer
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7428227317147798422, guid: dac8614662c31c44ea08fd6bacbae4a1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: dac8614662c31c44ea08fd6bacbae4a1, type: 3}
