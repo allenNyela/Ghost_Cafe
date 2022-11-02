@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -30,13 +32,18 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private float gameTimer = 120;
 
+
     [SerializeField]
     public GameObject theTimer;
+    [SerializeField]
+    public GameObject theScore;
     [SerializeField]
     private GameObject scoreCounter;
 
     void Awake()
     {
+        gameTimer = Time.time + gameTimer;
+
         customers = new GameObject[chairs.Length];
 
         PlayerPrefs.SetInt("currentScore", 0);
@@ -49,7 +56,8 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt("highScore4", 0);
             PlayerPrefs.SetInt("highScore5", 0);
         }
-            
+
+        
     }
 
     void Update()
@@ -60,8 +68,10 @@ public class GameManager : MonoBehaviour
             spawnCustomer();
         }
 
-        int a = (int)System.Math.Round(gameTimer);
-        theTimer.GetComponent<Text>().text = a.ToString();
+        int a = (int)System.Math.Round(gameTimer - Time.time);
+        theTimer.GetComponent<TextMeshProUGUI>().text = a.ToString();
+        int b = PlayerPrefs.GetInt("currentScore");
+        theScore.GetComponent<TextMeshProUGUI>().text = b.ToString();
 
         if (Time.time > gameTimer)
         {
@@ -153,5 +163,6 @@ public class GameManager : MonoBehaviour
         }
 
         // open the end scene
+        SceneManager.LoadScene(3);
     }
 }

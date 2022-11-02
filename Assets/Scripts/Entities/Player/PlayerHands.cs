@@ -144,7 +144,7 @@ public class PlayerHands : MonoBehaviour
 
         if (inRangeOfCustomer == true)
         {
-            if (currentCustomer.GetComponent<CustomerFood>().customerFoodRequest == currentlyHolding)
+            if (currentCustomer.GetComponent<CustomerFood>().customerFoodRequest == currentlyHolding && currentCustomer.GetComponent<CustomerFood>().isWaiting)
             {
                 currentCustomer.GetComponent<CustomerFood>().setGotFood(true, currentlyHolding);
                 Debug.Log("drop left");

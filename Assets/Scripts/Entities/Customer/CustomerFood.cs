@@ -9,7 +9,7 @@ public class CustomerFood : MonoBehaviour
     string[] food = { "Pie", "Coffee", "Turkey" };
     public string customerFoodRequest = "";
     bool isDone = false; //lets chair and game manager know customer is done and can leave the restaurant
-    bool isWaiting = false; // if waiting for a certain amount of time, score is decremented
+    public bool isWaiting = false; // if waiting for a certain amount of time, score is decremented
     float customerScore = 0; // change depending on the food item it requests
     private float timer = 0.0f;
     float foodDeduct = 0;
@@ -81,15 +81,7 @@ public class CustomerFood : MonoBehaviour
 
     void doneEatingFood()
     {
-        if (!isDone)
-        {
-            PlayerPrefs.SetInt("currentScore", PlayerPrefs.GetInt("currentScore") + (int)Math.Round(customerScore));
-            if (PlayerPrefs.GetInt("currentScore") < 0)
-            {
-                PlayerPrefs.SetInt("currentScore", 0);
-            }
-            Debug.Log("Score = " + PlayerPrefs.GetInt("currentScore"));
-        }
+        
         
         isDone = true;
         leaveRestaurant();
@@ -178,6 +170,13 @@ public class CustomerFood : MonoBehaviour
             Destroy(foodSpeechBubble);
             isWaiting = false;
 
+
+                PlayerPrefs.SetInt("currentScore", PlayerPrefs.GetInt("currentScore") + (int)Math.Round(customerScore));
+                if (PlayerPrefs.GetInt("currentScore") < 0)
+                {
+                    PlayerPrefs.SetInt("currentScore", 0);
+                }
+                Debug.Log("Score = " + PlayerPrefs.GetInt("currentScore"));
             
         }
         else
