@@ -39,6 +39,7 @@ public class CustomerMovement : MonoBehaviour
         if (!isWalkingIn && !isWalkingOut)
         {
             body.velocity = new Vector2(0, 0);
+  
         }
 
         if (isWalkingIn)
@@ -48,7 +49,7 @@ public class CustomerMovement : MonoBehaviour
             direction.Normalize();
             body.velocity = direction * speed;
 
-            if (body.velocity.x >= 0) 
+            if (body.velocity.x > 0) 
             {
                 transform.localScale = new Vector3(-1, 1, 1);
             }
@@ -67,7 +68,7 @@ public class CustomerMovement : MonoBehaviour
             direction.Normalize();
             body.velocity = direction * speed;
 
-            if (body.velocity.x >= 0)
+            if (body.velocity.x > 0)
             {
                 transform.localScale = new Vector3(-1, 1, 1);
             }
@@ -77,6 +78,19 @@ public class CustomerMovement : MonoBehaviour
                 transform.localScale = new Vector3(1, 1, 1);
             }
         }
+
+        if (body.velocity.x == 0) {
+            if (gameObject.GetComponent<CustomerFood>().chair.GetComponent<ChairBehavior>().right)
+            {
+                transform.localScale = new Vector3(1, 1, 1);
+            }
+
+            else
+            {
+                transform.localScale = new Vector3(-1, 1, 1);
+            }
+        }
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

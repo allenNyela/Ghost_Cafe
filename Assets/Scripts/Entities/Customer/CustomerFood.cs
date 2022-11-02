@@ -18,7 +18,7 @@ public class CustomerFood : MonoBehaviour
     bool foundChair = false;
 
     [SerializeField]
-    private GameObject chair = null;
+    public GameObject chair = null;
     [SerializeField]
     public int customerType = 0;
 
@@ -138,6 +138,7 @@ public class CustomerFood : MonoBehaviour
     void leaveRestaurant()
     {
         GetComponent<CustomerMovement>().WalkOut();
+        chair.GetComponent<ChairBehavior>().onCustomerExit();
 
     }
 

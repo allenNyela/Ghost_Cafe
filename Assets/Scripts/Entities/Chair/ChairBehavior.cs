@@ -7,6 +7,9 @@ public class ChairBehavior : MonoBehaviour
 
 {
     [SerializeField]
+    public bool right;
+
+    [SerializeField]
     private GameObject dirtyPlate;
     [SerializeField]
     private GameObject turkey;
@@ -72,22 +75,22 @@ public class ChairBehavior : MonoBehaviour
             onCustomerEnter(collision.gameObject);
         }
     }
-    private void OnTriggerExit2D(Collider2D collision)
+    /*private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject == customer)
         {
             onCustomerExit();
         }
 
-    }
+    }*/
 
-    private void onCustomerExit()
+    public void onCustomerExit()
     {
         setclean(false);
         setoccupied(false);
         setCustomer(null);
         Destroy(currentPlate);
-        currentPlate = Instantiate(dirtyPlate, new Vector2(tablePlaceholder.transform.position.x, tablePlaceholder.transform.position.y + 0.5f), Quaternion.identity, tablePlaceholder.transform);
+        currentPlate = Instantiate(dirtyPlate, new Vector2(tablePlaceholder.transform.position.x, tablePlaceholder.transform.position.y), Quaternion.identity, tablePlaceholder.transform);
     }
 
     private void onCustomerEnter(GameObject customer)

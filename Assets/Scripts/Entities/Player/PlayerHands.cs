@@ -19,11 +19,31 @@ public class PlayerHands : MonoBehaviour
     [SerializeField]
     private Transform trashcanCheck;
     [SerializeField]
+    private Transform trashcanCheck2;
+    [SerializeField]
     private Transform turkeyCheck;
+    [SerializeField]
+    private Transform turkeyCheck2;
+    [SerializeField]
+    private Transform turkeyCheck3;
+    [SerializeField]
+    private Transform turkeyCheck4;
     [SerializeField]
     private Transform coffeeCheck;
     [SerializeField]
     private Transform pieCheck;
+    [SerializeField]
+    private Transform pieCheck2;
+    [SerializeField]
+    private Transform pieCheck3;
+    [SerializeField]
+    private Transform pieCheck4;
+    [SerializeField]
+    private Transform pieCheck5;
+    [SerializeField]
+    private Transform pieCheck6;
+    [SerializeField]
+    private Transform pieCheck7;
     [SerializeField]
     private LayerMask whatIsPlayer;
     private bool inRangeOfCustomer;
@@ -82,7 +102,8 @@ public class PlayerHands : MonoBehaviour
 
     private void PickUpLeft()
     {
-        if (Physics2D.OverlapCircle(turkeyCheck.position, checkRadius, whatIsPlayer))
+        if (Physics2D.OverlapCircle(turkeyCheck.position, checkRadius, whatIsPlayer) || Physics2D.OverlapCircle(turkeyCheck2.position, checkRadius, whatIsPlayer)
+            || Physics2D.OverlapCircle(turkeyCheck3.position, checkRadius, whatIsPlayer) || Physics2D.OverlapCircle(turkeyCheck4.position, checkRadius, whatIsPlayer))
         {
             Debug.Log("pick up turkey");
             inLeftHand = Instantiate(turkey, leftHand.transform.position, Quaternion.identity, leftHand.transform);
@@ -96,7 +117,7 @@ public class PlayerHands : MonoBehaviour
             currentlyHolding = "Coffee";
         }
 
-        else if (Physics2D.OverlapCircle(pieCheck.position, checkRadius, whatIsPlayer))
+        else if (Physics2D.OverlapCircle(pieCheck.position, checkRadius, whatIsPlayer) || Physics2D.OverlapCircle(pieCheck2.position, checkRadius, whatIsPlayer) || Physics2D.OverlapCircle(pieCheck3.position, checkRadius, whatIsPlayer) || Physics2D.OverlapCircle(pieCheck4.position, checkRadius, whatIsPlayer) || Physics2D.OverlapCircle(pieCheck5.position, checkRadius, whatIsPlayer) || Physics2D.OverlapCircle(pieCheck6.position, checkRadius, whatIsPlayer) || Physics2D.OverlapCircle(pieCheck7.position, checkRadius, whatIsPlayer))
         {
             Debug.Log("pick up pie");
             inLeftHand = Instantiate(pie, leftHand.transform.position, Quaternion.identity, leftHand.transform);
@@ -114,7 +135,7 @@ public class PlayerHands : MonoBehaviour
 
     private void DropLeft()
     {
-        if (Physics2D.OverlapCircle(trashcanCheck.position, checkRadius * 2.6f, whatIsPlayer))
+        if (Physics2D.OverlapCircle(trashcanCheck.position, checkRadius * 2.6f, whatIsPlayer) || Physics2D.OverlapCircle(trashcanCheck2.position, checkRadius * 2.6f, whatIsPlayer))
         {
             Debug.Log("drop left");
             Destroy(inLeftHand);
@@ -138,7 +159,8 @@ public class PlayerHands : MonoBehaviour
 
     private void PickUpRight()
     {
-        if (Physics2D.OverlapCircle(turkeyCheck.position, checkRadius, whatIsPlayer))
+        if (Physics2D.OverlapCircle(turkeyCheck.position, checkRadius, whatIsPlayer) || Physics2D.OverlapCircle(turkeyCheck2.position, checkRadius, whatIsPlayer)
+            || Physics2D.OverlapCircle(turkeyCheck3.position, checkRadius, whatIsPlayer) || Physics2D.OverlapCircle(turkeyCheck4.position, checkRadius, whatIsPlayer))
         {
             Debug.Log("pick up turkey");
             inRightHand = Instantiate(turkey, rightHand.transform.position, Quaternion.identity, rightHand.transform);
@@ -152,7 +174,7 @@ public class PlayerHands : MonoBehaviour
             currentlyHoldingInRight = "Coffee";
         }
 
-        else if (Physics2D.OverlapCircle(pieCheck.position, checkRadius, whatIsPlayer))
+        else if (Physics2D.OverlapCircle(pieCheck.position, checkRadius, whatIsPlayer) || Physics2D.OverlapCircle(pieCheck2.position, checkRadius, whatIsPlayer) || Physics2D.OverlapCircle(pieCheck3.position, checkRadius, whatIsPlayer) || Physics2D.OverlapCircle(pieCheck4.position, checkRadius, whatIsPlayer) || Physics2D.OverlapCircle(pieCheck5.position, checkRadius, whatIsPlayer) || Physics2D.OverlapCircle(pieCheck6.position, checkRadius, whatIsPlayer) || Physics2D.OverlapCircle(pieCheck7.position, checkRadius, whatIsPlayer))
         {
             Debug.Log("pick up pie");
             inRightHand = Instantiate(pie, rightHand.transform.position, Quaternion.identity, rightHand.transform);
@@ -171,7 +193,7 @@ public class PlayerHands : MonoBehaviour
 
     private void DropRight()
     {
-        if (Physics2D.OverlapCircle(trashcanCheck.position, checkRadius * 2.6f, whatIsPlayer))
+        if (Physics2D.OverlapCircle(trashcanCheck.position, checkRadius * 2.6f, whatIsPlayer) || Physics2D.OverlapCircle(trashcanCheck2.position, checkRadius * 2.6f, whatIsPlayer))
         {
             Debug.Log("drop right");
             Destroy(inRightHand);

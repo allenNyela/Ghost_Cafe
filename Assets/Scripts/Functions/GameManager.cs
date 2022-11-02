@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -29,6 +30,10 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private float gameTimer = 120;
 
+    [SerializeField]
+    public GameObject theTimer;
+    [SerializeField]
+    private GameObject scoreCounter;
 
     void Awake()
     {
@@ -54,6 +59,9 @@ public class GameManager : MonoBehaviour
             spawnTimer = Time.time + spawnAttemptDelay;
             spawnCustomer();
         }
+
+        int a = (int)System.Math.Round(gameTimer);
+        theTimer.GetComponent<Text>().text = a.ToString();
 
         if (Time.time > gameTimer)
         {
