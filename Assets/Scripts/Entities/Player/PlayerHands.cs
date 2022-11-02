@@ -68,9 +68,12 @@ public class PlayerHands : MonoBehaviour
     private string currentlyHolding;
     private string currentlyHoldingInRight;
 
+    // PickUp/Drop Sound Effects
+    private AudioSource source;
+
     void Start()
     {
-        
+        source = GetComponent<AudioSource>();
     }
 
     // On left click
@@ -108,6 +111,7 @@ public class PlayerHands : MonoBehaviour
             Debug.Log("pick up turkey");
             inLeftHand = Instantiate(turkey, leftHand.transform.position, Quaternion.identity, leftHand.transform);
             currentlyHolding = "Turkey";
+            source.Play();
         }
 
         else if (Physics2D.OverlapCircle(coffeeCheck.position, checkRadius, whatIsPlayer))
@@ -115,6 +119,7 @@ public class PlayerHands : MonoBehaviour
             Debug.Log("pick up coffee");
             inLeftHand = Instantiate(coffee, leftHand.transform.position, Quaternion.identity, leftHand.transform);
             currentlyHolding = "Coffee";
+            source.Play();
         }
 
         else if (Physics2D.OverlapCircle(pieCheck.position, checkRadius, whatIsPlayer) || Physics2D.OverlapCircle(pieCheck2.position, checkRadius, whatIsPlayer) || Physics2D.OverlapCircle(pieCheck3.position, checkRadius, whatIsPlayer) || Physics2D.OverlapCircle(pieCheck4.position, checkRadius, whatIsPlayer) || Physics2D.OverlapCircle(pieCheck5.position, checkRadius, whatIsPlayer) || Physics2D.OverlapCircle(pieCheck6.position, checkRadius, whatIsPlayer) || Physics2D.OverlapCircle(pieCheck7.position, checkRadius, whatIsPlayer))
@@ -122,6 +127,7 @@ public class PlayerHands : MonoBehaviour
             Debug.Log("pick up pie");
             inLeftHand = Instantiate(pie, leftHand.transform.position, Quaternion.identity, leftHand.transform);
             currentlyHolding = "Pie";
+            source.Play();
         }
 
         else if (inRangeOfPlate)
@@ -130,6 +136,7 @@ public class PlayerHands : MonoBehaviour
             inLeftHand = Instantiate(dirtyPlate, leftHand.transform.position, Quaternion.identity, leftHand.transform);
             Destroy(currentPlate);
             currentlyHolding = "Trash";
+            source.Play();
         }
     }
 
@@ -140,6 +147,7 @@ public class PlayerHands : MonoBehaviour
             Debug.Log("drop left");
             Destroy(inLeftHand);
             currentlyHolding = "Nothing";
+            source.Play();
         }
 
         if (inRangeOfCustomer == true)
@@ -150,6 +158,7 @@ public class PlayerHands : MonoBehaviour
                 Debug.Log("drop left");
                 Destroy(inLeftHand);
                 currentlyHolding = "Nothing";
+                source.Play();
             }
             
         }
@@ -165,6 +174,7 @@ public class PlayerHands : MonoBehaviour
             Debug.Log("pick up turkey");
             inRightHand = Instantiate(turkey, rightHand.transform.position, Quaternion.identity, rightHand.transform);
             currentlyHoldingInRight = "Turkey";
+            source.Play();
         }
 
         else if (Physics2D.OverlapCircle(coffeeCheck.position, checkRadius, whatIsPlayer))
@@ -172,6 +182,7 @@ public class PlayerHands : MonoBehaviour
             Debug.Log("pick up coffee");
             inRightHand = Instantiate(coffee, rightHand.transform.position, Quaternion.identity, rightHand.transform);
             currentlyHoldingInRight = "Coffee";
+            source.Play();
         }
 
         else if (Physics2D.OverlapCircle(pieCheck.position, checkRadius, whatIsPlayer) || Physics2D.OverlapCircle(pieCheck2.position, checkRadius, whatIsPlayer) || Physics2D.OverlapCircle(pieCheck3.position, checkRadius, whatIsPlayer) || Physics2D.OverlapCircle(pieCheck4.position, checkRadius, whatIsPlayer) || Physics2D.OverlapCircle(pieCheck5.position, checkRadius, whatIsPlayer) || Physics2D.OverlapCircle(pieCheck6.position, checkRadius, whatIsPlayer) || Physics2D.OverlapCircle(pieCheck7.position, checkRadius, whatIsPlayer))
@@ -179,6 +190,7 @@ public class PlayerHands : MonoBehaviour
             Debug.Log("pick up pie");
             inRightHand = Instantiate(pie, rightHand.transform.position, Quaternion.identity, rightHand.transform);
             currentlyHoldingInRight = "Pie";
+            source.Play();
         }
 
         else if (inRangeOfPlate)
@@ -187,6 +199,7 @@ public class PlayerHands : MonoBehaviour
             inRightHand = Instantiate(dirtyPlate, rightHand.transform.position, Quaternion.identity, rightHand.transform);
             Destroy(currentPlate);
             currentlyHoldingInRight = "Trash";
+            source.Play();
         }
     }
 
@@ -198,6 +211,7 @@ public class PlayerHands : MonoBehaviour
             Debug.Log("drop right");
             Destroy(inRightHand);
             currentlyHoldingInRight = "Nothing";
+            source.Play();
         }
 
         if (inRangeOfCustomer == true)
@@ -209,6 +223,7 @@ public class PlayerHands : MonoBehaviour
                 Debug.Log("drop right");
                 Destroy(inRightHand);
                 currentlyHoldingInRight = "Nothing";
+                source.Play();
             }
         }
     }
