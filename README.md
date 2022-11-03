@@ -12,7 +12,7 @@ Team Members:
 
   Jackson Westbrook (He/Him) - Game Designer, Lead Gameplay Programmer
   
-  Kayla Sanderson (She/Her) - Game Designer, Programmer
+  Kayla Sanderson (She/Them) - Game Designer, Programmer
 
   Marianna F (She/Her) - Game Designer, 2d Character Artist, UI Artist, Object Artist
   
