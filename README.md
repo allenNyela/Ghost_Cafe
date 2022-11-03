@@ -8,7 +8,9 @@ Game Type: 2-D Cafe Simulator
 
 Tools Used: Unity, Gimp
 
+
 Team Members:
+
 
   Jackson Westbrook (He/Him) - Game Designer, Lead Gameplay Programmer
   
@@ -22,13 +24,16 @@ Team Members:
   
   Sadra Williams (She/Her) - Game Designer, 2d Character Artist, UI Artist
   
+  
 Controls:
+
 
   Movement: AWSD
   
   Pick-Up/Drop: Right/Left-Click
   
   Pause: esc
+  
   
 Concept:
 
