@@ -16,11 +16,11 @@ Team Members:
 
   Marianna F (She/Her) - Game Designer, 2d Character Artist, UI Artist, Object Artist
   
-  Natalia Rivera Rentas - Game Designer, 2d Character Artist, 2d Environment Artist, Animator
+  Natalia Rivera Rentas (She/Her) - Game Designer, 2d Character Artist, 2d Environment Artist, Animator
   
-  Nyela Allen - Game Designer, Programmer, Production Manager, Sound Designer
+  Nyela Allen (She/Her) - Game Designer, Programmer, Production Manager, Sound Designer
   
-  Sadra Williams - Game Designer, 2d Character Artist, UI Artist
+  Sadra Williams (She/Her) - Game Designer, 2d Character Artist, UI Artist
   
 Controls:
 
